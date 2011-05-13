@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<!--
+ * Copyright (C) 2011 Raphael Pereira
+ *
+ * This file is part of TweetMute.
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ *
+-->
+<html>
+  <head>
+    <script type="text/javascript" src="../js/analytics.js"></script>
+    <script type="text/javascript" src="../js/store.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript">
+      function onRequest(request, sender, callback) {
+        if (request.action == 'fetchUsers') {
+          store.setNamespace(tweetmute.namespace);
+          callback(store.getUsers());
+        }
+      };
+      chrome.extension.onRequest.addListener(onRequest);
+    </script>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+  </body>
+</html>

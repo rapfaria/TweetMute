@@ -1,0 +1,29 @@
+{
+  "name" : "TweetMute",
+  "version" : "0.2.1.0",
+  "description" : "TweetMute is an open source extension to mute annoying users on Twitter.",
+  "icons": {
+    "16": "img/icon16.ico",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "options_page":"html/options.html",
+  "background_page":"html/background.html",
+  "id": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDRwpnMSF15GDXkNn7Lh/IjoSeWOlyzMA4/LUnN247ve3JFyzNDp3UiF5bBhNq6K4JDBMHmGkWXVcsv86ryxBHOuUrdXEBEHfutvbhim7auV8MA+S0CfTyUJFWtHESdMPIU7Nv5GzhFyBYJ4B8g/LRMomwOwkafN0fx3mHnrNSF9wIDAQAB",
+  "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0siGWM/3qFS3tVblv2tVBMJOTpcVy7XCe2sKb6ZrGlEec8q0r7BvGsMzgaBT8YZonmqmbFDPW8gf495AtU3oggYAw3MrD/sx5ffjlk5dY1nCWrGSJUeQJJxuvBmojNBdE3HLsXFtTlnF01vxraY3eCItkvIhJCKiGnN8J0nYIbwIDAQAB",
+  "permissions":[
+    "tabs",
+    "http://twitter.com/"
+  ],
+  "update_url":"http://rmontanaro.com/labs/tweetmute/updates.xml",
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://twitter.com/"
+      ],
+      "js" : ["js/jquery.min.js", "js/user.js"],
+      "run_at" : "document_end",
+      "all_frames" : false
+    }
+  ]
+}

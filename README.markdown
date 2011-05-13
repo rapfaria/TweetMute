@@ -1,0 +1,19 @@
+# TweetMute
+
+Mute Twitter users easily without unfollowing them.
+
+## Instructions
+#### Usage
+Install the extension from [here](http://labs.rmontanaro.com/tweetmute/TweetMute.crx). To mute an user, add his or her name to the list. You can also block retweets, if you will.
+#### [Packaging](http://code.google.com/chrome/extensions/packaging.html "Packaging")
+In case you want to package the extension by yourself.
+##Targeted browsers
+
+Currently, TweetMute is for Chrome only (5.0 an higher).
+
+##Author
+
+[Raphael](http://twitter.com/rmontanaro "Raphael")
+
+##License
+All code are published under GPLv3

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<!--
+ * Copyright (C) 2011 Raphael Pereira
+ *
+ * This file is part of TweetMute.
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ *
+-->
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/analytics.js"></script>
+    <script type="text/javascript" src="../js/util.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/store.js"></script>
+    <script type="text/javascript" src="../js/cufon.js"></script>
+    <script type="text/javascript" src="../js/bauhaus.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        tweetmute.init();
+        Cufon.replace('legend');
+        Cufon.now();
+      });
+    </script>
+  </head>
+  <body >
+    <div id="content">
+      <fieldset>
+        <legend>
+          TweetMute
+        </legend>
+        <form id="muteForm" action="">
+          <label>Twitter username you want to mute:</label><br />
+          <input type="text" id="username" maxlength="16" /><br />
+          <label>Include <span class="blockretweet">retweets</span>?</label>
+          <input type="checkbox" /><br /><input type="button" value ="Mute" id="muteUser" />
+          <input type="button" value ="Clear list" id="clear" /> <br />
+          <label id="message"></label>
+        </form>
+      </fieldset>
+      <p>Right-click toggles retweets. Left-click unmutes.</p>
+      <dl id="usernames">
+        <dt>List of currently muted users</dt>
+        <dd class="empty">No users yet.</dd>
+      </dl>
+        
+    </div>
+  </body>
+</html>
