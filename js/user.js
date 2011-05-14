@@ -66,7 +66,6 @@ function userscript(usernames) {
       $el.addClass("twtmuted");
     }
 
-    console.log('ok');
     $(".stream-item:not(.twtmuted)").each(function () {
 
       var $el = $(this);
@@ -104,14 +103,16 @@ function userscript(usernames) {
 
       for (i = 1; i <= numDelays; i++) {
         (function(i) {
-
           setTimeout(function() {
             removeTweets();
-            console.log(i);
           }, delay * i);
         }(i));
       }
-      setInterval(removeTweets, 1000);
+
+      (function(){
+        removeTweets();
+        setTimeout(arguments.callee, 1000);
+      })()
 
     }
   });
