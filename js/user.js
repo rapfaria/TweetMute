@@ -16,11 +16,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
-/*global chrome window setInterval $*/
+/*global chrome window setTimeout $*/
 function userscript(usernames) {
   (function(version) {
     version = +version;
-  }("0.21"));
+  }("0.211"));
 
 
   function isValidLocation() {
@@ -40,11 +40,8 @@ function userscript(usernames) {
         .find(".tweet-screen-name")
         .text()
         .toLowerCase();
-      if ({}.hasOwnProperty.call(usernames, user)) {
-        $el.remove();
-        return true;
-      }
-      return false;
+      return {}.hasOwnProperty.call(usernames, user)
+            && $el.remove();
     }
 
     function removeRetweet($el) {
@@ -55,11 +52,8 @@ function userscript(usernames) {
         .trim()
         .toLowerCase()
         .slice(3);
-      if (usernames[user]) {
-        $el.remove();
-        return true;
-      }
-      return false;
+      return usernames[user]
+        && $el.remove();
     }
 
     function markAsVisited($el) {
@@ -67,7 +61,6 @@ function userscript(usernames) {
     }
 
     $(".stream-item:not(.twtmuted)").each(function () {
-
       var $el = $(this);
       if (!removeTweet($el) && !removeRetweet($el)) {
         markAsVisited($el);
@@ -100,19 +93,21 @@ function userscript(usernames) {
       var i;
       var delay = 100;
       var numDelays = 10;
-
-      for (i = 1; i <= numDelays; i++) {
-        (function(i) {
+      function removeInitialTweets(i){
+          console.log(i);
           setTimeout(function() {
             removeTweets();
           }, delay * i);
-        }(i));
+      }
+      
+      for (i = 1; i <= numDelays; i++) {
+        removeInitialTweets(i);
       }
 
       (function(){
         removeTweets();
         setTimeout(arguments.callee, 1000);
-      })()
+      }());
 
     }
   });

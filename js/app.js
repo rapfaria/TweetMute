@@ -153,15 +153,18 @@ var tweetmute = {
       e.preventDefault();
       return false;
     });
+
     $("dd").live("contextmenu", function(e) {
-      if (!$(this).hasClass('empty')) {
+
+      if (!$(this).hasClass("empty")) {
         var user = $(this).text();
         store.saveUser(user, !store.getUsers()[user]);
         $(this).toggleClass("blockretweet");
       }
 
       return false;
-    })
+    });
+    
     tweetmute.loadMutedUsersAsDefinitionList();
   }
 };

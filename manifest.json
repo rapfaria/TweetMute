@@ -1,6 +1,6 @@
 {
   "name" : "TweetMute",
-  "version" : "0.2.1.0",
+  "version" : "0.2.1.1",
   "description" : "TweetMute is an open source extension to mute annoying users on Twitter.",
   "icons": {
     "16": "img/icon16.ico",

@@ -87,7 +87,7 @@ var store = (function (window) {
   }
 
   function isEmpty() {
-    return localStorage.getItem(namespace) == "{}";
+    return localStorage.getItem(namespace) === "{}";
   }
 
   function removeUser(user) {
