@@ -9,7 +9,7 @@ Install the extension from [here](https://chrome.google.com/webstore/detail/noeg
 In case you want to package the extension by yourself.
 ##Targeted browsers
 
-Currently, TweetMute is for Chrome only (5.0 an higher).
+Currently, TweetMute is for Chrome only (5.0 and higher).
 
 ##Author
 
