@@ -20,7 +20,7 @@
 function userscript(usernames) {
   (function(version) {
     version = +version;
-  }("0.211"));
+  }("0.300"));
 
 
   function isValidLocation() {
@@ -32,19 +32,32 @@ function userscript(usernames) {
   }
 
   function removeTweets() {
-    if (!isValidLocation()) {
-      return;
+
+    if (isValidLocation()) {
+
+      $(document).bind("DOMNodeInserted", function(e) {
+        var $el = $(e.target);
+        if (isTweet($el)) {
+          if (tweetUsernameIsBlocked($el) || retweetUsernameIsBlocked($el)) {
+            $el.hide();
+          }
+        }
+      });
     }
-    function removeTweet($el) {
+
+    function isTweet($el) {
+      return $($el).hasClass("stream-item");
+    }
+
+    function tweetUsernameIsBlocked($el) {
       var user = $el
         .find(".tweet-screen-name")
         .text()
         .toLowerCase();
-      return {}.hasOwnProperty.call(usernames, user)
-            && $el.remove();
+      return {}.hasOwnProperty.call(usernames, user);
     }
 
-    function removeRetweet($el) {
+    function retweetUsernameIsBlocked($el) {
       var user = $el
         .find(".retweet-icon")
         .next()
@@ -52,20 +65,8 @@ function userscript(usernames) {
         .trim()
         .toLowerCase()
         .slice(3);
-      return usernames[user]
-        && $el.remove();
+      return usernames[user];
     }
-
-    function markAsVisited($el) {
-      $el.addClass("twtmuted");
-    }
-
-    $(".stream-item:not(.twtmuted)").each(function () {
-      var $el = $(this);
-      if (!removeTweet($el) && !removeRetweet($el)) {
-        markAsVisited($el);
-      }
-    });
 
   }
 
@@ -79,41 +80,29 @@ function userscript(usernames) {
     return true;
   }
 
-  $(function() {
-    if (noUsers()) {
-      return;
-    }
+  function handleOldTwitter() {
     var $oldTwitter = $(".phoenix-old-version");
     if ($oldTwitter.length) {
       var msg = "TweetMute doesn't work on old Twitter. The time has come:";
       $oldTwitter.text(msg);
-    } else {
-
-      //initial load.
-      var i;
-      var delay = 100;
-      var numDelays = 10;
-      function removeInitialTweets(i){
-          console.log(i);
-          setTimeout(function() {
-            removeTweets();
-          }, delay * i);
-      }
-      
-      for (i = 1; i <= numDelays; i++) {
-        removeInitialTweets(i);
-      }
-
-      (function(){
-        removeTweets();
-        setTimeout(arguments.callee, 1000);
-      }());
-
+      return false;
     }
-  });
+    return true;
+  }
+
+  function init() {
+    if (noUsers()) {
+      return;
+    }
+    handleOldTwitter() && removeTweets();
+  }
+
+  $(init);
 
 }
 
 chrome.extension.sendRequest({
   action: "fetchUsers"
 }, userscript);
+
+
