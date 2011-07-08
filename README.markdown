@@ -16,4 +16,4 @@ Currently, TweetMute is for Chrome only (5.0 and higher).
 [Raphael](http://twitter.com/rmontanaro "Raphael")
 
 ##License
-All code are published under GPLv3
+All code is published under GPLv3
